@@ -9,4 +9,9 @@ RSpec.describe Team, type: :model do
     it { should validate_presence_of(:number_of_players)}
   end 
 
+  describe "relationships" do 
+    it { should have_many(:users)}
+    it { should belong_to(:tournament)}
+  end 
+
 end

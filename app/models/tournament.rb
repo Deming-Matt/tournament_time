@@ -3,5 +3,6 @@ class Tournament < ApplicationRecord
     validates :host, presence: true
     validates :location, presence: true
     validates :number_of_teams, presence: true 
-    
+
+    has_many :teams 
 end

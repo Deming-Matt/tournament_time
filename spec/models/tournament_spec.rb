@@ -9,5 +9,9 @@ RSpec.describe Tournament, type: :model do
         it { should validate_presence_of(:number_of_teams) }
     end 
 
+    describe "relationships" do 
+        it { should have_many(:teams)}
+    end     
+
 end 
   
