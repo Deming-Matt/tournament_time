@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_29_034137) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_30_000005) do
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.string "captain"
     t.integer "number_of_players"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tournament_id", null: false
+    t.integer "user_id", null: false
+    t.index ["tournament_id"], name: "index_teams_on_tournament_id"
+    t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
   create_table "tournaments", force: :cascade do |t|
@@ -28,4 +38,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_29_034137) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "team_id", null: false
+    t.index ["team_id"], name: "index_users_on_team_id"
+  end
+
+  add_foreign_key "teams", "tournaments"
+  add_foreign_key "teams", "users"
+  add_foreign_key "users", "teams"
 end
