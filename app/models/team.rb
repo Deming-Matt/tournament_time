@@ -3,4 +3,5 @@ class Team < ApplicationRecord
     validates :captain, presence: true 
     validates :number_of_players, presence: true 
     
+    belongs_to :tournament
 end
